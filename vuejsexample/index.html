@@ -1,0 +1,101 @@
+<!-- index.html -->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vue</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <!-- navigation bar -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <a class="navbar-brand"><i class="glyphicon glyphicon-bullhorn"></i> Vue Personal Contacts Book Board</a>
+    </div>
+  </nav>
+
+  <!-- main body of our application -->
+  <div class="container" id="contacts">
+
+    <!-- add an contact form -->
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Add  Contact</h3>
+        </div>
+        <div class="panel-body">
+                 <div class="form-group">
+                    <input class="form-control" placeholder="Contact Name" v-model="contact.name">
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Contact Address" v-model="contact.address"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Contact@Email.com" v-model="contact.email">
+                </div>
+
+                 <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="111-111-1111" v-model="contact.phone">
+                </div>
+               
+                <div class="form-group">
+                    <input type="date" class="form-control" placeholder="Date of Birth" v-model="contact.dob">
+                </div>
+                <input class="form-control hidden" v-model="contact.id">
+                <button class="btn btn-primary" v-on:click="updateContact" v-if="contact.id">Update</button>
+                <button class="btn btn-primary" v-on:click="addContact" v-else>Add</button>
+                <button class="btn btn-default pull-right" v-on:click="resetForm">Cancel</button>
+                 
+        </div>
+
+      </div>
+    </div>
+
+    <!-- show the contacts -->
+    <div class="col-sm-6">
+      <div class="list-group">
+             <a href="#" class="list-group-item" v-for="(contact, index) in contacts">
+                <h4 class="list-group-item-heading">
+                <i class="glyphicon glyphicon-bullhorn"></i> 
+                {{ contact.name }}
+                </h4>
+
+                <h5>
+                <i class="glyphicon glyphicon-envelope" v-if="contact.email"></i> 
+                {{ contact.email }}
+                </h5>
+                
+                <h5>
+                <i class="glyphicon glyphicon-earphone" v-if="contact.phone"></i> 
+                {{ contact.phone }}
+                </h5>
+                
+                <h5>
+                <i class="glyphicon glyphicon-calendar" v-if="contact.dob"></i> 
+                {{ contact.dob }}
+                </h5>
+
+                <p class="list-group-item-text" v-if="contact.address">
+                  <i class="glyphicon glyphicon-home" v-if="contact.dob"></i> 
+                  {{ contact.address }}
+                </p>
+
+                <button class="btn btn-xs btn-danger" v-on:click="deleteContact(index)">Delete</button>
+                <button class="btn btn-xs btn-info pull-right" v-on:click="editContact(index)">Edit</button>
+            </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="node_modules/vue/dist/vue.js"></script>
+  <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
