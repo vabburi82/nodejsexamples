@@ -1,0 +1,9 @@
+{
+    "name": "CRUD-vuejs-example",
+    "version": "1.0.0",
+    "dependencies": {
+        "vue": "^2.0.5",
+        "vue-resource":"^1.0.3",
+        "bootstrap":"^3.3.7"
+    }
+}
